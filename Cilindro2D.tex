@@ -1,0 +1,185 @@
+
+\documentclass{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%TCIDATA{OutputFilter=LATEX.DLL}
+%TCIDATA{Version=4.00.0.2312}
+%TCIDATA{Created=Monday, September 19, 2005 19:12:55}
+%TCIDATA{LastRevised=Wednesday, October 26, 2005 13:58:48}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{<META NAME="DocumentShell" CONTENT="Standard LaTeX\Blank - Standard LaTeX Article">}
+%TCIDATA{CSTFile=40 LaTeX article.cst}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+\input{tcilatex}
+
+\begin{document}
+
+
+Mostraremos a solu\c{c}\~{a}o num\'{e}rica de um problema de difus\~{a}%
+o-convec\c{c}\~{a}o em duas dimens\~{o}es em coordenadas cil\'{\i}ndricas.
+A\ equa\c{c}\~{a}o diferencial que governa tal problema \'{e} :
+
+$\qquad \qquad \qquad \qquad D_{12}\left[ \QDABOVE{1pt}{\partial ^{2}C}{%
+\partial r^{2}}+\QDABOVE{1pt}{1}{r}\QDABOVE{1pt}{\partial C}{\partial r}+%
+\QDABOVE{1pt}{\partial ^{2}C}{\partial z^{2}}\right] =\QDABOVE{1pt}{\partial
+C}{\partial t}+2\overline{u}\left[ 1-\QDABOVE{1pt}{r^{2}}{a^{2}}\right] 
+\QDABOVE{1pt}{\partial C}{\partial z}$
+
+Antes de discretirzarmos a equa\c{c}\~{a}o acima, normalizaremos essa para
+cada termo ter o mesmo peso, fazemos isso por:
+
+$r=\widetilde{r}\cdot r_{\max }$ e $z=\widetilde{z}\cdot z_{\max }$ e $%
+\QDABOVE{1pt}{\partial C}{\partial r}=\QDABOVE{1pt}{1}{r_{\max }}\QDABOVE{1pt%
+}{\partial \widetilde{C}}{\partial \widetilde{r}}$ , $\QDABOVE{1pt}{\partial
+^{2}C}{\partial r^{2}}=\QDABOVE{1pt}{1}{r_{\max }^{2}}\QDABOVE{1pt}{\partial
+^{2}\widetilde{C}}{\partial \widetilde{r}^{2}}$ , $\QDABOVE{1pt}{\partial C}{%
+\partial z}=\QDABOVE{1pt}{1}{z_{\max }}\QDABOVE{1pt}{\partial \widetilde{C}}{%
+\partial \widetilde{z}}$ e $\ \ \ \ \QDABOVE{1pt}{\partial ^{2}C}{\partial
+z^{2}}=\QDABOVE{1pt}{1}{z_{\max }^{2}}\QDABOVE{1pt}{\partial ^{2}\widetilde{C%
+}}{\partial \widetilde{z}^{2}}$.
+
+Substituindo na equa\c{c}\~{a}o e multiplicando por $r_{\max }^{2}\cdot
+z_{\max }^{2}:$
+
+$D_{12}\left[ z_{\max }^{2}\QDABOVE{1pt}{\partial ^{2}\widetilde{C}}{%
+\partial \widetilde{r}^{2}}+\QDABOVE{1pt}{z_{\max }^{2}}{\widetilde{r}}%
+\QDABOVE{1pt}{\partial \widetilde{C}}{\partial \widetilde{r}}+r_{\max }^{2}%
+\QDABOVE{1pt}{\partial ^{2}\widetilde{C}}{\partial \widetilde{z}^{2}}\right]
+=z_{\max }^{2}r_{\max }^{2}\QDABOVE{1pt}{\partial \widetilde{C}}{\partial t}%
++2\overline{u}z_{\max }r_{\max }^{2}\left[ 1-\widetilde{r}^{2}\right] 
+\QDABOVE{1pt}{\partial \widetilde{C}}{\partial \widetilde{z}}$
+
+Discretizando a equa\c{c}\~{a}o pelo m\'{e}todo impl\'{\i}cito de
+Crank-Nicolson,\bigskip $\QDABOVE{1pt}{D_{12}}{2}\left[ z_{\max }^{2}\left( 
+\QDABOVE{1pt}{\widetilde{C}_{i+1,k}^{n+1}-2\widetilde{C}_{i,k}^{n+1}+%
+\widetilde{C}_{i-1,k}^{n+1}}{\left( \Delta \widetilde{r}\right) ^{2}}+%
+\QDABOVE{1pt}{\widetilde{C}_{i+1,k}^{n}-2\widetilde{C}_{i,k}^{n}+\widetilde{C%
+}_{i-1,k}^{n}}{\left( \Delta \widetilde{r}\right) ^{2}}\right) +\QDABOVE{1pt%
+}{z_{\max }^{2}}{i\Delta \widetilde{r}}\left( \QDABOVE{1pt}{\widetilde{C}%
+_{i+1,k}^{n+1}-\widetilde{C}_{i-1,k}^{n+1}}{2\Delta \widetilde{r}}+\QDABOVE{%
+1pt}{\widetilde{C}_{i+1,k}^{n}-\widetilde{C}_{i-1,k}^{n}}{2\Delta \widetilde{%
+r}}\right) +r_{\max }^{2}\left( \QDABOVE{1pt}{\widetilde{C}_{i,k+1}^{n+1}-2%
+\widetilde{C}_{i,k}^{n+1}+\widetilde{C}_{i,k-1}^{n+1}}{\left( \Delta 
+\widetilde{z}\right) ^{2}}+\QDABOVE{1pt}{\widetilde{C}_{i,k+1}^{n}-2%
+\widetilde{C}_{i,k}^{n}+\widetilde{C}_{i,k-1}^{n}}{\left( \Delta \widetilde{z%
+}\right) ^{2}}\right) \right] =z_{\max }^{2}r_{\max }^{2}\left( \QDABOVE{1pt%
+}{\widetilde{C}_{i,k}^{n+1}-\widetilde{C}_{i,k}^{n}}{\Delta t}\right) +2%
+\overline{u}z_{\max }r_{\max }^{2}\left[ 1-(i\Delta \widetilde{r})^{2}\right]
+\left( \QDABOVE{1pt}{\widetilde{C}_{i,k+1}^{n+1}-2\widetilde{C}_{i,k-1}^{n+1}%
+}{2\Delta \widetilde{z}}+\QDABOVE{1pt}{\widetilde{C}_{i,k+1}^{n}-2\widetilde{%
+C}_{i,k-1}^{n}}{2\Delta \widetilde{z}}\right) $
+
+e definindo :
+
+$r_{rn}=\QDABOVE{1pt}{D_{12}\Delta t}{(\Delta \widetilde{r})^{2}}z_{\max
+}^{2}$ , $r_{zn}=\QDABOVE{1pt}{D_{12}\Delta t}{(\Delta \widetilde{z})^{2}}%
+r_{\max }^{2}$ e $r_{un}=\QDABOVE{1pt}{z_{\max }\overline{u}r_{\max }^{2}}{%
+2\Delta \widetilde{z}}\left[ 1-\left( i\cdot \Delta \widetilde{r}\right) ^{2}%
+\right] \Delta t$ ,
+
+chegamos a\bigskip $\widetilde{C}_{i,k}^{n+1}=\left\{ \QDABOVE{1pt}{r_{rn}}{2%
+}\left[ \widetilde{C}_{i+1,k}^{n+1}+\widetilde{C}_{i+1,k}^{n+1}+\widetilde{C}%
+_{i+1,k}^{n}+\widetilde{C}_{i-1,k}^{n}-2\widetilde{C}_{i,k}^{n}\right] +%
+\QDABOVE{1pt}{r_{rn}}{4i}\left[ \widetilde{C}_{i+1,k}^{n+1}-\widetilde{C}%
+_{i-1,k}^{n+1}+\widetilde{C}_{i+1,k}^{n}-\widetilde{C}_{i-1,k}^{n}\right] +%
+\QDABOVE{1pt}{r_{zn}}{2}\left[ \widetilde{C}_{i,k+1}^{n+1}+\widetilde{C}%
+_{i,k-1}^{n+1}+\widetilde{C}_{i,k+1}^{n}-2\widetilde{C}_{i,k}^{n}+\widetilde{%
+C}_{i,k-1}^{n}\right] +z_{\max }^{2}r_{\max }^{2}\widetilde{C}%
+_{i,k}^{n}-r_{un}\left[ \widetilde{C}_{i,k+1}^{n+1}-\widetilde{C}%
+_{i,k-1}^{n+1}+\widetilde{C}_{i,k+1}^{n}-\widetilde{C}_{i,k-1}^{n}\right]
+\right\} /(r_{rn}+r_{zn}+r_{\max }^{2}z_{\max }^{2})$
+
+O formato da equa\c{c}\~{a}o acima \'{e} tal para podermos resolver o
+sistema linear pelo m\'{e}todo interativo de Gauss-Seidel. Por\'{e}m
+precisamos de outras equa\c{c}\~{o}es para o n\'{u}mero de inc\'{o}gnitas
+ser igual ao n\'{u}mero de vari\'{a}veis. Essas equa\c{c}\~{o}es extras s%
+\~{a}o obtidas pela singularidade em $i=0$ e pelas condi\c{c}\~{o}es de
+contorno.
+
+Ent\~{a}o, em $i=0$ temos uma singularidade que resulta na equa\c{c}\~{a}o
+no formato abaixo (aplicando a regra de L%
+%TCIMACRO{\U{b4}}%
+%BeginExpansion
+\'{}%
+%EndExpansion
+Hospital):
+
+$\ \ \ \ \ \ \ \ \ \ \ \qquad D_{12}\left[ 2\QDABOVE{1pt}{1}{r_{\max }^{2}}%
+\QDABOVE{1pt}{\partial ^{2}\widetilde{C}}{\partial \widetilde{r}^{2}}+%
+\QDABOVE{1pt}{1}{z_{\max }^{2}}\QDABOVE{1pt}{\partial ^{2}\widetilde{C}}{%
+\partial \widetilde{z}^{2}}\right] =\QDABOVE{1pt}{\partial \widetilde{C}}{%
+\partial t}+2\overline{u}\left[ 1-\widetilde{r}^{2}\right] \QDABOVE{1pt}{1}{%
+z_{\max }}\QDABOVE{1pt}{\partial \widetilde{C}}{\partial \widetilde{z}}$
+
+aplicando o m\'{e}todo de Cranck-Nicolson, e chamando de $r_{un2}=\QDABOVE{%
+1pt}{\overline{u}\Delta tr_{\max }^{2}z_{\max }}{2\Delta \widetilde{z}}$ :
+
+$\widetilde{C}_{0,k}^{n+1}=\left\{ 2r_{rn}\left[ 2\widetilde{C}_{1,k}^{n+1}+2%
+\widetilde{C}_{1,k}^{n}-2\widetilde{C}_{0,k}^{n}\right] +\QDABOVE{1pt}{r_{zn}%
+}{2}\left[ \widetilde{C}_{0,k+1}^{n+1}-2\widetilde{C}_{0,k-1}^{n+1}+%
+\widetilde{C}_{0,k+1}^{n}-2\widetilde{C}_{0,k}^{n}+\widetilde{C}_{0,k-1}^{n}%
+\right] +z_{\max }^{2}r_{\max }^{2}\widetilde{C}_{0,k}^{n}-r_{un2}\left[ 
+\widetilde{C}_{0,k+1}^{n+1}-\widetilde{C}_{0,k-1}^{n+1}+\widetilde{C}%
+_{0,k+1}^{n}-\widetilde{C}_{0,k-1}^{n}\right] \right\}
+/(2r_{rn}+r_{zn}+r_{\max }^{2}z_{\max }^{2})$
+
+\bigskip Uma condi\c{c}\~{a}o de fronteira \'{e} o isolamento da superf\'{\i}%
+cie do cil\'{\i}ndro, expressa por:
+
+$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \QDABOVE{1pt}{\partial \widetilde{C}}{%
+\partial \widetilde{r}}|_{\widetilde{r}=1}=0$ , obtemos:
+
+$\widetilde{C}_{M,k}^{n+1}=\left\{ r_{rn}\left[ \widetilde{C}_{M-1,k}^{n+1}+%
+\widetilde{C}_{M-1,k}^{n}-\widetilde{C}_{M,k}^{n}\right] +\QDABOVE{1pt}{%
+r_{zn}}{2}\left[ \widetilde{C}_{M,k+1}^{n+1}+\widetilde{C}_{M,k-1}^{n+1}+%
+\widetilde{C}_{M,k+1}^{n}-2\widetilde{C}_{M,k}^{n}+\widetilde{C}_{M,k-1}^{n}%
+\right] +z_{\max }^{2}r_{\max }^{2}\widetilde{C}_{M,k}^{n}\right\}
+/(r_{rn}+r_{zn}+r_{\max }^{2}z_{\max }^{2})$
+
+No in\'{\i}cio do cil\'{\i}ndro existe fluxo apenas no sentido positivo de $z
+$, expressamos essa condi\c{c}\~{a}o pela equa\c{c}\~{a}o:
+
+\qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad $\QDABOVE{1pt}{%
+\partial \widetilde{C}}{\partial \widetilde{z}}|_{\widetilde{z}=0}=0$ ,
+conseguindo outra condi\c{c}\~{a}o de fronteira:
+
+\bigskip $\qquad \widetilde{C}_{i,0}^{n+1}=\left\{ \QDABOVE{1pt}{r_{rn}}{2}%
+\left[ \widetilde{C}_{i+1,0}^{n+1}+\widetilde{C}_{i-1,0}^{n+1}+\widetilde{C}%
+_{i+1,0}^{n}-2\widetilde{C}_{i,0}^{n}+\widetilde{C}_{i-1,0}^{n}\right] +%
+\QDABOVE{1pt}{r_{rn}}{4i}\left[ \widetilde{C}_{i+1,0}^{n+1}-\widetilde{C}%
+_{i-1,0}^{n+1}+\widetilde{C}_{i+1,0}^{n}-\widetilde{C}_{i-1,0}^{n}\right]
++r_{zn}\left[ \widetilde{C}_{i,1}^{n+1}+\widetilde{C}_{i,1}^{n}-\widetilde{C}%
+_{i,0}^{n}\right] +z_{\max }^{2}r_{\max }^{2}\widetilde{C}_{i,0}^{n}\right\}
+/(r_{rn}+r_{zn}+r_{\max }^{2}z_{\max }^{2})$
+
+E uma \'{u}ltima condi\c{c}\~{a}o \'{e} para representar a concentra\c{c}%
+\~{a}o nula no fim do cil\'{\i}ndro:
+
+\qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad $\widetilde{C}%
+_{i,N}^{n}=0.$
+
+$\qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad $
+
+\end{document}
